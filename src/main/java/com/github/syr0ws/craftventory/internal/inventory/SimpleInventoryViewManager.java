@@ -5,6 +5,7 @@ import com.github.syr0ws.craftventory.api.inventory.data.DataStore;
 import com.github.syr0ws.craftventory.api.inventory.InventoryViewManager;
 import com.github.syr0ws.craftventory.api.util.Context;
 import com.github.syr0ws.craftventory.internal.inventory.data.SimpleDataStore;
+import com.github.syr0ws.craftventory.internal.util.SimpleContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class SimpleInventoryViewManager implements InventoryViewManager {
             throw new IllegalArgumentException("inventory cannot be null");
         }
 
-        this.openViewInternal(inventory, newHistory, null);
+        this.openViewInternal(inventory, newHistory, new SimpleContext());
     }
 
     @Override
