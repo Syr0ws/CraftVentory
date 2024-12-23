@@ -74,41 +74,41 @@ public class SimplePagination<T> implements Pagination<T> {
         InventoryProvider provider = this.inventory.getProvider();
         InventoryContent content = this.inventory.getContent();
 
-        List<T> items = this.model.getCurrentItems();
+        List<T> paginatedItems = this.model.getCurrentItems();
 
         int i = 0;
 
         for (int slot : this.slots) {
 
-            InventoryItem item = null;
+            InventoryItem inventoryItem = null;
 
             // Checking whether there is a data associated with the current slot or not.
-            // This might not be the case if there is fewer data than slots.
-            if (i < items.size()) {
+            // This might not be the case if there is fewer paginated data than slots.
+            if (i < paginatedItems.size()) {
 
-                T data = items.get(i);
+                T paginatedItem = paginatedItems.get(i);
 
                 // Building the paginated item.
                 Context context = this.getPaginationContext();
                 context.addData(CommonContextKey.SLOT.name(), slot, Integer.class);
-                context.addData(CommonContextKey.PAGINATION_ITEM.name(), data, this.model.getDataType());
+                context.addData(CommonContextKey.PAGINATION_ITEM.name(), paginatedItem, this.model.getDataType());
 
                 PaginationItemDto dto = provider.getProviderManager()
                         .provide(ProviderNameEnum.PAGINATION_ITEM.name(), PaginationItemDto.class, provider, context)
                         .orElseThrow(() -> new InventoryException(String.format("Cannot provide pagination item for pagination '%s'", this.id)));
 
-                item = new SimpleInventoryItem(dto.getId(), dto.getItem(), dto.getActions());
+                inventoryItem = new SimpleInventoryItem(dto.getId(), dto.getItem(), dto.getActions());
 
                 // Associating the paginated data with the item.
-                DataStore store = item.getLocalStore();
-                store.setData(CommonDataStoreKey.PAGINATED_DATA, this.model.getDataType(), data);
+                DataStore store = inventoryItem.getLocalStore();
+                store.setData(CommonDataStoreKey.PAGINATED_DATA, this.model.getDataType(), paginatedItem);
             }
 
             // Item may be null if there is no data or if it has been set to null during the transformation process.
-            if (item == null) {
+            if (inventoryItem == null) {
                 content.removeItem(slot);
             } else {
-                content.setItem(item, slot);
+                content.setItem(inventoryItem, slot);
             }
 
             i++;
