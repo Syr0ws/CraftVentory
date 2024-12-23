@@ -1,6 +1,7 @@
 package com.github.syr0ws.craftventory.api.inventory;
 
 import com.github.syr0ws.craftventory.api.inventory.data.DataStore;
+import com.github.syr0ws.craftventory.api.util.Context;
 
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public interface InventoryViewManager {
      * </p>
      *
      * @param inventory The {@link CraftVentory} to open. Must not be {@code null}.
-     * @throws IllegalArgumentException if the {@code inventory} is {@code null}.
+     * @throws IllegalArgumentException if {@code inventory} is {@code null}.
      */
     void openView(CraftVentory inventory);
 
@@ -26,9 +27,31 @@ public interface InventoryViewManager {
      *
      * @param inventory  The {@link CraftVentory} to open. Must not be {@code null}.
      * @param newHistory Whether to create a new history entry for this view.
-     * @throws IllegalArgumentException If the {@code inventory} is {@code null}.
+     * @throws IllegalArgumentException If {@code inventory} is {@code null}.
      */
     void openView(CraftVentory inventory, boolean newHistory);
+
+    /**
+     * Opens the specified {@link CraftVentory} for the viewer.
+     * <p>
+     * This is the same as {@code InventoryViewManager#openView(inventory, false, context)}
+     * </p>
+     *
+     * @param inventory  The {@link CraftVentory} to open. Must not be {@code null}.
+     * @param context The {@link Context} containing data to pass to the inventory.
+     * @throws IllegalArgumentException If {@code inventory} or {@code context} is {@code null}.
+     */
+    void openView(CraftVentory inventory, Context context);
+
+    /**
+     * Opens the specified {@link CraftVentory} for the viewer.
+     *
+     * @param inventory  The {@link CraftVentory} to open. Must not be {@code null}.
+     * @param newHistory Whether to create a new history entry for this view.
+     * @param context The {@link Context} containing data to pass to the inventory.
+     * @throws IllegalArgumentException If {@code inventory} or {@code context} is {@code null}.
+     */
+    void openView(CraftVentory inventory, boolean newHistory, Context context);
 
     /**
      * Clears the history for the viewer and optionally closes the currently opened inventory.

@@ -27,6 +27,15 @@ public interface CraftVentory {
     void open();
 
     /**
+     * Opens the inventory to the {@link InventoryViewer} referred by the {@code getViewer()} method by passing a {@link Context}.
+     * <p>
+     * This method is for internal use only. You should always use the {@link InventoryViewManager#openView(CraftVentory)}
+     * method to open an inventory.
+     * </p>
+     */
+    void open(Context context);
+
+    /**
      * Closes the inventory to the {@link InventoryViewer} referred by the {@code getViewer()} method.
      * <p>
      * This method is for internal use only. You should always use the {@link InventoryViewManager#clear(boolean)} method
