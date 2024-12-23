@@ -126,7 +126,7 @@ public interface InventoryViewManager {
     Optional<CraftVentory> getOpenedInventory();
 
     /**
-     * Retrieves the shared storage between inventories in the history.
+     * Retrieves the shared data store between inventories in the history.
      *
      * @return The {@link DataStore} instance shared among inventories. Never {@code null}.
      */

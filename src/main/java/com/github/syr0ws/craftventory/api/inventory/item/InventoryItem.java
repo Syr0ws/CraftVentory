@@ -31,7 +31,7 @@ public interface InventoryItem {
      * triggered depending on the specific click type.
      * </p>
      *
-     * @return A list of {@link ClickAction}. Must not be {@code null}.
+     * @return A list of {@link ClickAction}. Never {@code null}.
      */
     List<ClickAction> getActions();
 }

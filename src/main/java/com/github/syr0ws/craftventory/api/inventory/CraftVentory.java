@@ -112,7 +112,7 @@ public interface CraftVentory {
     InventoryContent getContent();
 
     /**
-     * Retrieves the local storage for the inventory.
+     * Retrieves the local data store for the inventory.
      *
      * @return The {@link DataStore} instance associated with the inventory.
      */
