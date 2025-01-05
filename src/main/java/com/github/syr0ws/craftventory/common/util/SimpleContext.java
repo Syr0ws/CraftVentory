@@ -46,7 +46,32 @@ public class SimpleContext implements Context {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> Optional<T> getData(String key, Class<T> type) {
+    public <T> T getData(String key, Class<T> type) {
+
+        if (key == null) {
+            throw new IllegalArgumentException("key cannot be null");
+        }
+
+        if (type == null) {
+            throw new IllegalArgumentException("type cannot be null");
+        }
+
+        Data<?> data = this.storage.get(key);
+
+        if (data == null) {
+            throw new NullPointerException(String.format("No data found for the key '%s'", key));
+        }
+
+        if (type.isInstance(data.value())) {
+            throw new IllegalArgumentException(String.format("Type mismatch: %s stored and %s provided", data.type(), type));
+        }
+
+        return (T) data.value();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> Optional<T> findData(String key, Class<T> type) {
 
         if (key == null) {
             throw new IllegalArgumentException("key cannot be null");

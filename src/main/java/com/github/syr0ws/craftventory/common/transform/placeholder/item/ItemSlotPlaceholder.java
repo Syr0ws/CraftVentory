@@ -19,6 +19,6 @@ public class ItemSlotPlaceholder implements Placeholder {
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.SLOT.name());
+        return context.hasData(CommonContextKey.SLOT.name(), Integer.class);
     }
 }

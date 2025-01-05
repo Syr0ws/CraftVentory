@@ -22,6 +22,6 @@ public class PlayerNamePlaceholder implements Placeholder {
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.VIEWER.name());
+        return context.hasData(CommonContextKey.VIEWER.name(), InventoryViewer.class);
     }
 }

@@ -23,6 +23,7 @@ public abstract class PaginationPlaceholder implements Placeholder {
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.PAGINATION_ID.name());
+        return context.hasData(CommonContextKey.INVENTORY.name(), CraftVentory.class) &&
+                context.hasData(CommonContextKey.PAGINATION_ID.name(), String.class);
     }
 }

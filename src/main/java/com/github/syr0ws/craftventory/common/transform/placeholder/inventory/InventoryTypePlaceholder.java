@@ -20,6 +20,6 @@ public class InventoryTypePlaceholder implements Placeholder {
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.INVENTORY.name());
+        return context.hasData(CommonContextKey.INVENTORY.name(), CraftVentory.class);
     }
 }

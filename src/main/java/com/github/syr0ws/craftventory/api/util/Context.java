@@ -34,9 +34,20 @@ public interface Context {
      * @param <T>  The expected type of the value.
      * @param key  The unique key that identifies the data in the context. Must not be {@code null}.
      * @param type The Java class type of the value. Must not be {@code null}.
-     * @return An {@link Optional} containing the data entry if it exists, or an empty {@link Optional} if not found.
+     * @return The data associated with the given key and type if it exists.
      * @throws NullPointerException If there is no data associated with the given key.
      * @throws IllegalArgumentException If the provided type does not match the type of the stored data.
      */
-    <T> Optional<T> getData(String key, Class<T> type);
+    <T> T getData(String key, Class<T> type);
+
+    /**
+     * Retrieves the value associated with the given key from the context.
+     *
+     * @param <T>  The expected type of the value.
+     * @param key  The unique key that identifies the data in the context. Must not be {@code null}.
+     * @param type The Java class type of the value. Must not be {@code null}.
+     * @return An {@link Optional} containing the data entry if it exists, or an empty {@link Optional} if not found.
+     * @throws IllegalArgumentException If the provided type does not match the type of the stored data.
+     */
+    <T> Optional<T> findData(String key, Class<T> type);
 }
