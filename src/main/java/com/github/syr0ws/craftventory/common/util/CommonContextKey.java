@@ -6,6 +6,6 @@ public class CommonContextKey {
     public static final String INVENTORY = "INVENTORY";
     public static final String SLOT = "SLOT";
     public static final String PAGINATION_ID = "PAGINATION_ID";
-    public static final String PAGINATION_ITEM = "PAGINATION_ITEM";
+    public static final String PAGINATED_DATA = "PAGINATION_ITEM";
     public static final String ITEM_ID = "ITEM_ID";
 }
