@@ -101,7 +101,7 @@ public class SimplePagination<T> implements Pagination<T> {
 
                 // Associating the paginated data with the item.
                 DataStore store = inventoryItem.getLocalStore();
-                store.setData(CommonDataStoreKey.PAGINATED_DATA, this.model.getDataType(), paginatedItem);
+                store.setData(CommonDataStoreKey.PAGINATED_DATA, paginatedItem, this.model.getDataType());
             }
 
             // Item may be null if there is no data or if it has been set to null during the transformation process.
