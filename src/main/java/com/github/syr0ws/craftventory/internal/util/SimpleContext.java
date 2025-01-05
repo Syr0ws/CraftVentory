@@ -1,4 +1,4 @@
-package com.github.syr0ws.craftventory.common.util;
+package com.github.syr0ws.craftventory.internal.util;
 
 import com.github.syr0ws.craftventory.api.util.Context;
 
