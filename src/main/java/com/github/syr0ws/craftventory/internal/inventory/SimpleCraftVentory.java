@@ -191,8 +191,8 @@ public class SimpleCraftVentory implements CraftVentory {
     public Context getDefaultContext() {
 
         Context context = new SimpleContext();
-        context.addData(CommonContextKey.VIEWER.name(), this.viewer, InventoryViewer.class);
-        context.addData(CommonContextKey.INVENTORY.name(), this, CraftVentory.class);
+        context.addData(CommonContextKey.VIEWER, this.viewer, InventoryViewer.class);
+        context.addData(CommonContextKey.INVENTORY, this, CraftVentory.class);
 
         return context;
     }
@@ -220,7 +220,7 @@ public class SimpleCraftVentory implements CraftVentory {
                 int slot = (row * type.getColumns()) + col;
 
                 Context context = this.getDefaultContext();
-                context.addData(CommonContextKey.SLOT.name(), slot, Integer.class);
+                context.addData(CommonContextKey.SLOT, slot, Integer.class);
 
                 InventoryItem item = this.provider.getProviderManager()
                         .provide(ProviderNameEnum.INVENTORY_ITEM_BY_SLOT.name(), InventoryItemDto.class, this.provider, context)

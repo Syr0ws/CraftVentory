@@ -154,7 +154,7 @@ public class SimpleInventoryProvider implements InventoryProvider {
             String paginationId = paginationConfig.getId();
 
             Context context = inventory.getDefaultContext();
-            context.addData(CommonContextKey.PAGINATION_ID.name(), paginationId, String.class);
+            context.addData(CommonContextKey.PAGINATION_ID, paginationId, String.class);
 
             PaginationDto<?> dto = this.getProviderManager()
                     .provide(paginationId, PaginationDto.class, this, context)

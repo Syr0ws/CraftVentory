@@ -15,13 +15,13 @@ public class PlayerUUIDPlaceholder implements Placeholder {
 
     @Override
     public String getValue(Context context) {
-        InventoryViewer viewer = context.getData(CommonContextKey.VIEWER.name(), InventoryViewer.class);
+        InventoryViewer viewer = context.getData(CommonContextKey.VIEWER, InventoryViewer.class);
         Player player = viewer.getPlayer();
         return player.getUniqueId().toString();
     }
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.VIEWER.name());
+        return context.hasData(CommonContextKey.VIEWER, InventoryViewer.class);
     }
 }

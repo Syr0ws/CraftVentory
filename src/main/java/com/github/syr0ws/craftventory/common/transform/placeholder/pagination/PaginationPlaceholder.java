@@ -11,8 +11,8 @@ public abstract class PaginationPlaceholder implements Placeholder {
 
     protected PaginationModel<?> getPaginationModel(Context context) {
 
-        CraftVentory inventory = context.getData(CommonContextKey.INVENTORY.name(), CraftVentory.class);
-        String paginationId = context.getData(CommonContextKey.PAGINATION_ID.name(), String.class);
+        CraftVentory inventory = context.getData(CommonContextKey.INVENTORY, CraftVentory.class);
+        String paginationId = context.getData(CommonContextKey.PAGINATION_ID, String.class);
 
         Pagination<?> pagination = inventory.getPaginationManager()
                 .getPagination(paginationId)
@@ -23,6 +23,7 @@ public abstract class PaginationPlaceholder implements Placeholder {
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.PAGINATION_ID.name());
+        return context.hasData(CommonContextKey.INVENTORY, CraftVentory.class) &&
+                context.hasData(CommonContextKey.PAGINATION_ID, String.class);
     }
 }

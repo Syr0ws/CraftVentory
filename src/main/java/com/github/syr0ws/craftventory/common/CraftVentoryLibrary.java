@@ -3,6 +3,8 @@ package com.github.syr0ws.craftventory.common;
 import com.github.syr0ws.craftventory.api.InventoryService;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoaderFactory;
 import com.github.syr0ws.craftventory.api.config.dao.InventoryConfigDAO;
+import com.github.syr0ws.craftventory.api.util.Context;
+import com.github.syr0ws.craftventory.internal.util.SimpleContext;
 import com.github.syr0ws.craftventory.internal.SimpleInventoryService;
 import com.github.syr0ws.craftventory.internal.config.yaml.YamlInventoryConfigDAO;
 import com.github.syr0ws.craftventory.internal.config.yaml.action.*;
@@ -62,5 +64,13 @@ public class CraftVentoryLibrary {
         }
 
         return factory;
+    }
+
+    /**
+     * Creates an empty {@link Context}.
+     * @return An instance of {@link Context}.
+     */
+    public static Context createContext() {
+        return new SimpleContext();
     }
 }
