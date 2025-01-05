@@ -14,7 +14,7 @@ public interface DataStore {
      *
      * @param <T>   The type of the value to store.
      * @param key   The unique key that identifies the data in the store. Must not be {@code null} or empty.
-     * @param value The value to store.
+     * @param value The value to store. Must not be {@code null}.
      * @param type  The {@link Class} type of the data. Must not be {@code null}.
      */
     <T> void setData(String key, T value, Class<T> type);

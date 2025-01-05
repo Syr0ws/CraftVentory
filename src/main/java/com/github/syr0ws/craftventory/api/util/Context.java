@@ -13,7 +13,7 @@ public interface Context {
      *
      * @param <T>   The type of the value to store.
      * @param key   The unique key that identifies the data in the context. Must not be {@code null}.
-     * @param value The value to store.
+     * @param value The value to store. Must not be {@code null}.
      * @param type  The {@link Class} type of the data. Must not be {@code null}.
      */
     <T> void addData(String key, T value, Class<T> type);
