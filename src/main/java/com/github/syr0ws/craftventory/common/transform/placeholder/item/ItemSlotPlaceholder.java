@@ -13,12 +13,12 @@ public class ItemSlotPlaceholder implements Placeholder {
 
     @Override
     public String getValue(Context context) {
-        Integer slot = context.getData(CommonContextKey.SLOT.name(), Integer.class);
+        Integer slot = context.getData(CommonContextKey.SLOT, Integer.class);
         return Integer.toString(slot);
     }
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.SLOT.name(), Integer.class);
+        return context.hasData(CommonContextKey.SLOT, Integer.class);
     }
 }

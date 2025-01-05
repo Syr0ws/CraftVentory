@@ -22,7 +22,7 @@ public class InventoryItemProviderBySlot extends AbstractItemProvider<InventoryI
         // Data retrieval from configuration
         InventoryConfig config = provider.getConfig();
 
-        Integer slot = context.findData(CommonContextKey.SLOT.name(), Integer.class)
+        Integer slot = context.findData(CommonContextKey.SLOT, Integer.class)
                 .orElseThrow(() -> new NullPointerException("No slot found in the context"));
 
         InventoryItemConfig itemConfig = config.getContent().get(slot);

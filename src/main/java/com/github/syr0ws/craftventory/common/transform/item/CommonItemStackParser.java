@@ -52,7 +52,7 @@ public class CommonItemStackParser implements ItemParser {
 
         String name = provider.getI18n()
                 .map(i18n -> {
-                    InventoryViewer viewer = context.getData(CommonContextKey.VIEWER.name(), InventoryViewer.class);
+                    InventoryViewer viewer = context.getData(CommonContextKey.VIEWER, InventoryViewer.class);
                     return i18n.getText(viewer, meta.getDisplayName());
                 }).orElse(meta.getDisplayName());
 
@@ -69,7 +69,7 @@ public class CommonItemStackParser implements ItemParser {
 
         List<String> lore = provider.getI18n()
                 .map(i18n -> {
-                    InventoryViewer viewer = context.getData(CommonContextKey.VIEWER.name(), InventoryViewer.class);
+                    InventoryViewer viewer = context.getData(CommonContextKey.VIEWER, InventoryViewer.class);
                     return meta.getLore().stream().map(line -> i18n.getText(viewer, line)).toList();
                 }).orElse(meta.getLore());
 

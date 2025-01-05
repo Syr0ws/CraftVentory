@@ -14,12 +14,12 @@ public class InventorySizePlaceholder implements Placeholder {
 
     @Override
     public String getValue(Context context) {
-        CraftVentory inventory = context.getData(CommonContextKey.INVENTORY.name(), CraftVentory.class);
+        CraftVentory inventory = context.getData(CommonContextKey.INVENTORY, CraftVentory.class);
         return Integer.toString(inventory.getSize());
     }
 
     @Override
     public boolean accept(Context context) {
-        return context.hasData(CommonContextKey.INVENTORY.name(), CraftVentory.class);
+        return context.hasData(CommonContextKey.INVENTORY, CraftVentory.class);
     }
 }

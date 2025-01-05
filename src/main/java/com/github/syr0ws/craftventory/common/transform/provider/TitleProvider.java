@@ -45,11 +45,11 @@ public class TitleProvider implements Provider<TitleDto> {
 
     private String parseTitle(String title, InventoryProvider provider, Context context) {
 
-        if (!context.hasData(CommonContextKey.VIEWER.name(), InventoryViewer.class)) {
+        if (!context.hasData(CommonContextKey.VIEWER, InventoryViewer.class)) {
             return TextUtil.parseColors(title);
         }
 
-        InventoryViewer viewer = context.getData(CommonContextKey.VIEWER.name(), InventoryViewer.class);
+        InventoryViewer viewer = context.getData(CommonContextKey.VIEWER, InventoryViewer.class);
 
         String parsed = provider.getI18n()
                 .map(i18n -> i18n.getText(viewer, title))

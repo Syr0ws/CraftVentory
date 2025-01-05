@@ -90,8 +90,8 @@ public class SimplePagination<T> implements Pagination<T> {
 
                 // Building the paginated item.
                 Context context = this.getPaginationContext();
-                context.addData(CommonContextKey.SLOT.name(), slot, Integer.class);
-                context.addData(CommonContextKey.PAGINATION_ITEM.name(), paginatedItem, this.model.getDataType());
+                context.addData(CommonContextKey.SLOT, slot, Integer.class);
+                context.addData(CommonContextKey.PAGINATION_ITEM, paginatedItem, this.model.getDataType());
 
                 PaginationItemDto dto = provider.getProviderManager()
                         .provide(ProviderNameEnum.PAGINATION_ITEM.name(), PaginationItemDto.class, provider, context)
@@ -191,7 +191,7 @@ public class SimplePagination<T> implements Pagination<T> {
 
     private Context getPaginationContext() {
         Context context = this.inventory.getDefaultContext();
-        context.addData(CommonContextKey.PAGINATION_ID.name(), this.id, String.class);
+        context.addData(CommonContextKey.PAGINATION_ID, this.id, String.class);
         return context;
     }
 }
