@@ -9,18 +9,18 @@ public class SimpleDataStore implements DataStore {
     private final Map<String, Data<?>> data = new HashMap<>();
 
     @Override
-    public <T> void setData(String key, Class<T> type, T value) {
+    public <T> void setData(String key, T value, Class<T> type) {
 
         if(key == null || key.isEmpty()) {
             throw new IllegalArgumentException("key cannot be null or empty");
         }
 
-        if(type == null) {
-            throw new IllegalArgumentException("type cannot be null");
-        }
-
         if(value == null) {
             throw new IllegalArgumentException("null value is not allowed");
+        }
+
+        if(type == null) {
+            throw new IllegalArgumentException("type cannot be null");
         }
 
         this.data.put(key, new Data<>(type, value));
