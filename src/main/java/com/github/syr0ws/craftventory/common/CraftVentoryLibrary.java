@@ -67,8 +67,8 @@ public class CraftVentoryLibrary {
     }
 
     /**
-     * Creates a new {@link Context}.
-     * @return An instance of {@link Context} with no data.
+     * Creates an empty {@link Context}.
+     * @return An instance of {@link Context}.
      */
     public static Context createContext() {
         return new SimpleContext();
