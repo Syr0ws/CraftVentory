@@ -62,7 +62,7 @@ public class SimpleContext implements Context {
             throw new NullPointerException(String.format("No data found for the key '%s'", key));
         }
 
-        if (type.isInstance(data.value())) {
+        if (!type.isInstance(data.value())) {
             throw new IllegalArgumentException(String.format("Type mismatch: %s stored and %s provided", data.type(), type));
         }
 
@@ -87,7 +87,7 @@ public class SimpleContext implements Context {
             return Optional.empty();
         }
 
-        if (type.isInstance(data.value())) {
+        if (!type.isInstance(data.value())) {
             throw new IllegalArgumentException(String.format("Type mismatch: %s stored and %s provided", data.type(), type));
         }
 
