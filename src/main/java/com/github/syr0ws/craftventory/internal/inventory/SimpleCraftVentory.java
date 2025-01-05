@@ -65,11 +65,20 @@ public class SimpleCraftVentory implements CraftVentory {
 
     @Override
     public void open() {
+        this.open(new SimpleContext());
+    }
+
+    @Override
+    public void open(Context context) {
+
+        if(context == null) {
+            throw new IllegalArgumentException("context cannot be null");
+        }
 
         this.inventory = this.createBukkitInventory();
 
         // Hook
-        CraftVentoryBeforeOpenEvent event = new CraftVentoryBeforeOpenEvent(this, this.viewer);
+        CraftVentoryBeforeOpenEvent event = new CraftVentoryBeforeOpenEvent(this, this.viewer, context);
         this.hookManager.executeHooks(event, CraftVentoryBeforeOpenEvent.class);
 
         if(event.isCancelled()) {

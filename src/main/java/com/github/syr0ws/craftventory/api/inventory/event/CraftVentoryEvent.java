@@ -16,8 +16,18 @@ public abstract class CraftVentoryEvent {
      *
      * @param inventory The {@link CraftVentory} instance associated with this event.
      * @param viewer    The player who triggered this event.
+     * @throws IllegalArgumentException If any parameter is null.
      */
     public CraftVentoryEvent(CraftVentory inventory, InventoryViewer viewer) {
+
+        if (inventory == null) {
+            throw new IllegalArgumentException("inventory cannot be null");
+        }
+
+        if (viewer == null) {
+            throw new IllegalArgumentException("viewer cannot be null");
+        }
+
         this.inventory = inventory;
         this.viewer = viewer;
     }

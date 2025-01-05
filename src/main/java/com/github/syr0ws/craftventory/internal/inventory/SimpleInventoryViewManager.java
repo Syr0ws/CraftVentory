@@ -3,7 +3,9 @@ package com.github.syr0ws.craftventory.internal.inventory;
 import com.github.syr0ws.craftventory.api.inventory.CraftVentory;
 import com.github.syr0ws.craftventory.api.inventory.data.DataStore;
 import com.github.syr0ws.craftventory.api.inventory.InventoryViewManager;
+import com.github.syr0ws.craftventory.api.util.Context;
 import com.github.syr0ws.craftventory.internal.inventory.data.SimpleDataStore;
+import com.github.syr0ws.craftventory.internal.util.SimpleContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,30 @@ public class SimpleInventoryViewManager implements InventoryViewManager {
             throw new IllegalArgumentException("inventory cannot be null");
         }
 
+        this.openViewInternal(inventory, newHistory, new SimpleContext());
+    }
+
+    @Override
+    public void openView(CraftVentory inventory, Context context) {
+        this.openView(inventory, false, context);
+    }
+
+    @Override
+    public void openView(CraftVentory inventory, boolean newHistory, Context context) {
+
+        if(inventory == null) {
+            throw new IllegalArgumentException("inventory cannot be null");
+        }
+
+        if(context == null) {
+            throw new IllegalArgumentException("context cannot be null");
+        }
+
+        this.openViewInternal(inventory, newHistory, context);
+    }
+
+    private void openViewInternal(CraftVentory inventory, boolean newHistory, Context context) {
+
         // If the new inventory must be opened in a new history, clearing the existing one.
         // Otherwise, closing the currently opened inventory if it exists and opening the new one.
         if(newHistory) {
@@ -45,7 +71,7 @@ public class SimpleInventoryViewManager implements InventoryViewManager {
         this.history.add(inventory);
         this.index = this.history.size() - 1;
 
-        inventory.open();
+        inventory.open(context);
     }
 
     @Override
