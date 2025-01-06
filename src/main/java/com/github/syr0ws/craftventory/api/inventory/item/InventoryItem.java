@@ -42,4 +42,20 @@ public interface InventoryItem {
      * @return The {@link DataStore} instance associated with the item. Never {@code null}.
      */
     DataStore getLocalStore();
+
+    /**
+     * Enable the item. When an item is enabled, its actions are executed when a player clicks on it.
+     */
+    void enable();
+
+    /**
+     * Disable the item. When an item is disabled, its actions are not executed when a player clicks on it.
+     */
+    void disable();
+
+    /**
+     * Check if an item is enabled.
+     * @return {@code true} if the item is enabled, {@code false} otherwise.
+     */
+    boolean isEnabled();
 }
