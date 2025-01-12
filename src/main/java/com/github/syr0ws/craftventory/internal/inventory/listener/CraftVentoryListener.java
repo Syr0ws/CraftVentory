@@ -116,7 +116,7 @@ public class CraftVentoryListener implements Listener {
         }
 
         // If an item has been clicked, executing its actions.
-        if(item != null) {
+        if(item != null && item.isEnabled()) {
 
             item.getActions().stream()
                     .filter(action -> this.hasClickType(action, event.getClick()))

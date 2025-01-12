@@ -15,6 +15,7 @@ public class SimpleInventoryItem implements InventoryItem {
     private final ItemStack item;
     private final List<ClickAction> actions;
     private final DataStore dataStore;
+    private boolean enabled = true;
 
     public SimpleInventoryItem(String id, ItemStack item, List<ClickAction> actions) {
 
@@ -54,5 +55,20 @@ public class SimpleInventoryItem implements InventoryItem {
     @Override
     public DataStore getLocalStore() {
         return this.dataStore;
+    }
+
+    @Override
+    public void enable() {
+        this.enabled = true;
+    }
+
+    @Override
+    public void disable() {
+        this.enabled = false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 }
