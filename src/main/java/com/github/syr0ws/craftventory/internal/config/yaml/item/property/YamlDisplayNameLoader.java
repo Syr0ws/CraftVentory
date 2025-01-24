@@ -1,7 +1,7 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.item.property;
 
+import com.github.syr0ws.crafter.text.TextUtil;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
-import com.github.syr0ws.craftventory.internal.util.TextUtil;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

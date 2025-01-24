@@ -1,5 +1,6 @@
 package com.github.syr0ws.craftventory.common.transform.provider;
 
+import com.github.syr0ws.crafter.text.TextUtil;
 import com.github.syr0ws.craftventory.api.config.InventoryConfig;
 import com.github.syr0ws.craftventory.api.inventory.InventoryViewer;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
@@ -8,7 +9,6 @@ import com.github.syr0ws.craftventory.api.transform.provider.Provider;
 import com.github.syr0ws.craftventory.api.util.Context;
 import com.github.syr0ws.craftventory.common.transform.dto.TitleDto;
 import com.github.syr0ws.craftventory.common.util.CommonContextKey;
-import com.github.syr0ws.craftventory.internal.util.TextUtil;
 
 public class TitleProvider implements Provider<TitleDto> {
 

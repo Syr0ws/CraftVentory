@@ -1,12 +1,12 @@
 package com.github.syr0ws.craftventory.common.inventory.action;
 
+import com.github.syr0ws.crafter.text.TextUtil;
 import com.github.syr0ws.craftventory.api.inventory.CraftVentory;
 import com.github.syr0ws.craftventory.api.inventory.action.ClickType;
 import com.github.syr0ws.craftventory.api.inventory.event.CraftVentoryClickEvent;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
 import com.github.syr0ws.craftventory.api.transform.placeholder.PlaceholderManager;
 import com.github.syr0ws.craftventory.api.util.Context;
-import com.github.syr0ws.craftventory.internal.util.TextUtil;
 
 import java.util.ArrayList;
 import java.util.List;
