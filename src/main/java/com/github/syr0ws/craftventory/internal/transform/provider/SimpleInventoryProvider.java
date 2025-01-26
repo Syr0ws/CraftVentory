@@ -1,11 +1,10 @@
 package com.github.syr0ws.craftventory.internal.transform.provider;
 
+import com.github.syr0ws.crafter.file.FileUtil;
 import com.github.syr0ws.craftventory.api.InventoryService;
 import com.github.syr0ws.craftventory.api.config.InventoryConfig;
-import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
 import com.github.syr0ws.craftventory.api.inventory.CraftVentory;
 import com.github.syr0ws.craftventory.api.inventory.InventoryViewer;
-import com.github.syr0ws.craftventory.api.inventory.exception.InventoryException;
 import com.github.syr0ws.craftventory.api.inventory.pagination.Pagination;
 import com.github.syr0ws.craftventory.api.transform.InventoryDescriptor;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
@@ -33,7 +32,6 @@ import com.github.syr0ws.craftventory.internal.transform.placeholder.SimplePlace
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Optional;
@@ -95,23 +93,19 @@ public class SimpleInventoryProvider implements InventoryProvider {
     @Override
     public void loadConfig() {
 
-        // If a resource file is present, copying it to the plugin folder.
         String resourceFile = this.descriptor.getInventoryResourceFile();
-
-        if(resourceFile != null) {
-            this.plugin.saveResource(resourceFile, false);
-        }
-
-        // Loading the inventory configuration file from the plugin folder.
         Path path = this.descriptor.getInventoryConfigFile();
 
-        if(!Files.exists(path)) {
-            throw new InventoryException(String.format("Inventory configuration file '%s' not found", path));
-        }
-
         try {
+
+            // If a resource file is present, copying it to the plugin folder.
+            if(resourceFile != null) {
+                FileUtil.copyResource(this.plugin, resourceFile, path, false);
+            }
+
             this.inventoryConfig = this.descriptor.getInventoryConfigDAO().loadConfig(path);
-        } catch (InventoryConfigException exception) {
+
+        } catch (Exception exception) {
             String message = String.format("An error occurred while loading the configuration file '%s'", path);
             this.plugin.getLogger().log(Level.SEVERE, message, exception);
         }
