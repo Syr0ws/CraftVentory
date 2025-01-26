@@ -45,7 +45,7 @@ public class YamlInventoryConfigDAO implements InventoryConfigDAO {
         }
 
         if (!Files.exists(file)) {
-            throw new InventoryConfigException(String.format("File %s does not exist", file));
+            throw new InventoryConfigException(String.format("Inventory configuration file '%s' not found", file));
         }
 
         ConfigurationSection section = YamlConfiguration.loadConfiguration(file.toFile());
