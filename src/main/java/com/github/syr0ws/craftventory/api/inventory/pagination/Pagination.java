@@ -19,7 +19,7 @@ public interface Pagination<T> {
      * update the inventory view, use the {@link CraftVentory#updateView()} method.
      * </p>
      */
-    void update();
+    void update(boolean updateData);
 
     /**
      * Navigates to the previous page in the pagination. This method does not do anything if the current

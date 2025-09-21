@@ -34,7 +34,8 @@ public class PreviousPageAction extends CommonAction {
 
         pagination.previousPage();
 
-        inventory.updateContent();
+        // TODO When updating the view, other items that display pagination data will not be updated.
+        inventory.updateView();
     }
 
     @Override

@@ -42,12 +42,12 @@ public class SimplePaginationManager implements PaginationManager {
 
         this.getPagination(paginationId)
                 .orElseThrow(() -> new InventoryException(String.format("No pagination found with id '%s'", paginationId)))
-                .update();
+                .update(true);
     }
 
     @Override
     public void updatePaginations() {
-        this.paginations.values().forEach(Pagination::update);
+        this.paginations.values().forEach(pagination -> pagination.update(true));
     }
 
     @Override

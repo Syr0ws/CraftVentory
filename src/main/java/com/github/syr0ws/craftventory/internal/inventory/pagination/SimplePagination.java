@@ -19,6 +19,7 @@ import com.github.syr0ws.craftventory.internal.inventory.item.SimpleInventoryIte
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class SimplePagination<T> implements Pagination<T> {
@@ -26,13 +27,13 @@ public class SimplePagination<T> implements Pagination<T> {
     private final String id;
     private final CraftVentory inventory;
     private final PaginationModel<T> model;
-    private final Function<CraftVentory, List<T>> dataSupplier;
+    private final BiFunction<CraftVentory, SimplePagination<T>, List<T>> dataSupplier;
     private final List<Integer> slots;
 
     public SimplePagination(String id,
                             CraftVentory inventory,
                             PaginationModel<T> model,
-                            Function<CraftVentory, List<T>> dataSupplier,
+                            BiFunction<CraftVentory, SimplePagination<T>, List<T>> dataSupplier,
                             List<Integer> slots) {
 
         if (id == null || id.isEmpty()) {
@@ -63,8 +64,12 @@ public class SimplePagination<T> implements Pagination<T> {
     }
 
     @Override
-    public void update() {
-        this.model.updateItems(this.dataSupplier.apply(this.inventory));
+    public void update(boolean updateData) {
+
+        if(updateData) {
+            this.model.updateItems(this.dataSupplier.apply(this.inventory, this));
+        }
+
         this.updatePaginationItems();
         this.updatePageItems();
     }
@@ -161,7 +166,7 @@ public class SimplePagination<T> implements Pagination<T> {
 
         if (this.model.hasPreviousPage()) {
             this.model.previousPage();
-            this.update();
+            this.update(false);
         }
     }
 
@@ -170,7 +175,7 @@ public class SimplePagination<T> implements Pagination<T> {
 
         if (this.model.hasNextPage()) {
             this.model.nextPage();
-            this.update();
+            this.update(false);
         }
     }
 

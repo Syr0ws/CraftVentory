@@ -6,8 +6,10 @@ import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
 import com.github.syr0ws.craftventory.api.transform.enhancement.EnhancementManager;
 import com.github.syr0ws.craftventory.api.util.Context;
 import com.github.syr0ws.craftventory.common.transform.dto.pagination.PaginationDto;
+import com.github.syr0ws.craftventory.internal.inventory.pagination.SimplePagination;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -16,9 +18,9 @@ public class PaginationProvider<T> extends AbstractPaginationDataProvider<Pagina
 
     private final String paginationId;
     private final Class<T> paginationDataType;
-    private final Function<CraftVentory, List<T>> dataSupplier;
+    private final BiFunction<CraftVentory, SimplePagination<T>, List<T>> dataSupplier;
 
-    public PaginationProvider(String paginationId, Class<T> paginationDataType, Function<CraftVentory, List<T>> dataSupplier) {
+    public PaginationProvider(String paginationId, Class<T> paginationDataType, BiFunction<CraftVentory, SimplePagination<T>, List<T>> dataSupplier) {
 
         if (paginationId == null || paginationId.isEmpty()) {
             throw new IllegalArgumentException("paginationId cannot be null or empty");
