@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public enum ClickType {
 
-    LEFT, RIGHT, MIDDLE, ALL;
+    LEFT, RIGHT, MIDDLE;
 
     /**
      * Determines whether a given name matches any defined {@link ClickType}.

@@ -5,6 +5,7 @@ import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigExcept
 import com.github.syr0ws.craftventory.api.inventory.action.ClickType;
 import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,12 +16,9 @@ public abstract class YamlCommonActionLoader implements ClickActionLoader<Config
 
     protected Set<ClickType> loadClickTypes(ConfigurationSection section) throws InventoryConfigException {
 
-        Set<ClickType> clickTypes = new HashSet<>();
-
         // If the property is not set, all clicks are handled by default.
         if (!section.isSet(CLICK_TYPES_KEY)) {
-            clickTypes.add(ClickType.ALL);
-            return clickTypes;
+            return Collections.emptySet();
         }
 
         // When the property is set, checking that it is a list.
@@ -29,6 +27,7 @@ public abstract class YamlCommonActionLoader implements ClickActionLoader<Config
         }
 
         List<String> clickTypeNames = section.getStringList(CLICK_TYPES_KEY);
+        Set<ClickType> clickTypes = new HashSet<>();
 
         for (String clickTypeName : clickTypeNames) {
 
