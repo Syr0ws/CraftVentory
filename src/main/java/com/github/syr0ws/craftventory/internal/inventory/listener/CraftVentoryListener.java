@@ -235,7 +235,8 @@ public class CraftVentoryListener implements Listener {
 
         Set<ClickType> clickTypes = action.getClickTypes();
 
-        if (clickTypes.contains(ClickType.ALL)) {
+        // If no click type is specified for the action, we consider that all clicks are allowed.
+        if (clickTypes.isEmpty()) {
             return true;
         }
 

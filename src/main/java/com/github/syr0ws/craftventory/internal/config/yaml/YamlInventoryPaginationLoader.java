@@ -78,10 +78,10 @@ public class YamlInventoryPaginationLoader {
         SimpleInventoryItemConfig nextPageItem = nextPage.key();
 
         previousPageItem.setId(IdUtil.getPaginationPreviousPageItemId(paginationId));
-        previousPageItem.getActions().add(new PreviousPageAction(Collections.singleton(ClickType.ALL), paginationId));
+        previousPageItem.getActions().add(new PreviousPageAction(Collections.emptySet(), paginationId));
 
         nextPageItem.setId(IdUtil.getPaginationNextPageItemId(paginationId));
-        nextPageItem.getActions().add(new NextPageAction(Collections.singleton(ClickType.ALL), paginationId));
+        nextPageItem.getActions().add(new NextPageAction(Collections.emptySet(), paginationId));
 
         return new SimplePaginationConfig(
                 paginationId,
