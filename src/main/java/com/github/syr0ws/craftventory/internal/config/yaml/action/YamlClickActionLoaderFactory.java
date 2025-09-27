@@ -1,5 +1,6 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.action;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoader;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoaderFactory;
 import org.bukkit.configuration.ConfigurationSection;
@@ -9,12 +10,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<ConfigurationSection> {
+public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<ConfigurationMap> {
 
-    private final Map<String, ClickActionLoader<ConfigurationSection>> loaders = new HashMap<>();
+    private final Map<String, ClickActionLoader<ConfigurationMap>> loaders = new HashMap<>();
 
     @Override
-    public ClickActionLoader<ConfigurationSection> getLoader(String name) {
+    public ClickActionLoader<ConfigurationMap> getLoader(String name) {
 
         if (name == null) {
             throw new IllegalArgumentException("type cannot be null");
@@ -24,7 +25,7 @@ public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<Co
     }
 
     @Override
-    public void addLoader(ClickActionLoader<ConfigurationSection> loader) {
+    public void addLoader(ClickActionLoader<ConfigurationMap> loader) {
 
         if (loader == null) {
             throw new IllegalArgumentException("loader cannot be null");
@@ -34,7 +35,7 @@ public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<Co
     }
 
     @Override
-    public Set<ClickActionLoader<ConfigurationSection>> getLoaders() {
+    public Set<ClickActionLoader<ConfigurationMap>> getLoaders() {
         return new HashSet<>(this.loaders.values());
     }
 }

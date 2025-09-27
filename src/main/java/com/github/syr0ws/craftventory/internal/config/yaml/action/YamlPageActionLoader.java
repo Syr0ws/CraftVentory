@@ -1,19 +1,19 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.action;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
 import com.github.syr0ws.craftventory.common.config.yaml.YamlCommonActionLoader;
-import org.bukkit.configuration.ConfigurationSection;
 
 public abstract class YamlPageActionLoader extends YamlCommonActionLoader {
 
     private static final String PAGINATION_ID_KEY = "pagination-id";
 
-    protected String getPaginationId(ConfigurationSection section) throws InventoryConfigException {
+    protected String getPaginationId(ConfigurationMap map) throws InventoryConfigException {
 
-        if (!section.isString(PAGINATION_ID_KEY)) {
-            throw new InventoryConfigException(String.format("Property '%s' missing at '%s'", PAGINATION_ID_KEY, section.getCurrentPath()));
+        if (!map.isString(PAGINATION_ID_KEY)) {
+            throw new InventoryConfigException("Property '%s' not found or is not a string for action '%s' at '%s'".formatted(PAGINATION_ID_KEY, this.getName(), map.getCurrentPath()));
         }
 
-        return section.getString(PAGINATION_ID_KEY);
+        return map.getString(PAGINATION_ID_KEY);
     }
 }

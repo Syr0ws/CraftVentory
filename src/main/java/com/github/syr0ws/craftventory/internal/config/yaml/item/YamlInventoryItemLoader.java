@@ -1,5 +1,6 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.item;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoader;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoaderFactory;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
@@ -11,17 +12,18 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class YamlInventoryItemLoader {
 
     private static final String ITEM_KEY = "item";
     private static final String ACTIONS_KEY = "actions";
-    private static final String ACTION_TYPE_KEY = "type";
+    private static final String ACTION_KEY = "action";
 
-    private final ClickActionLoaderFactory<ConfigurationSection> factory;
+    private final ClickActionLoaderFactory<ConfigurationMap> factory;
     private final YamlItemStackLoader itemStackLoader = new YamlItemStackLoader();
 
-    public YamlInventoryItemLoader(ClickActionLoaderFactory<ConfigurationSection> factory) {
+    public YamlInventoryItemLoader(ClickActionLoaderFactory<ConfigurationMap> factory) {
 
         if (factory == null) {
             throw new IllegalArgumentException("factory cannot be null");
@@ -66,35 +68,29 @@ public class YamlInventoryItemLoader {
 
     private List<ClickAction> loadActions(ConfigurationSection section) throws InventoryConfigException {
 
-        ConfigurationSection actionsSection = section.getConfigurationSection(ACTIONS_KEY);
-
-        if (actionsSection == null) {
+        if(!section.isSet(ACTIONS_KEY)) {
             return new ArrayList<>();
         }
 
+        List<Map<?,?>> actionsListMap = section.getMapList(ACTIONS_KEY);
         List<ClickAction> actions = new ArrayList<>();
 
-        for (String key : actionsSection.getKeys(false)) {
+        for(Map<?,?> map : actionsListMap) {
 
-            ConfigurationSection actionSection = actionsSection.getConfigurationSection(key);
+            ConfigurationMap configurationMap = new ConfigurationMap(section, map);
 
-            if (actionSection == null) {
-                throw new InventoryConfigException(String.format("Key '%s.%s' is not a section", actionsSection.getCurrentPath(), key));
+            if(!configurationMap.isString(ACTION_KEY)) {
+                throw new InventoryConfigException("Property '%s' not found or is not a string at '%s'".formatted(ACTION_KEY, configurationMap.getCurrentPath()));
             }
 
-            if (!actionSection.isString(ACTION_TYPE_KEY)) {
-                throw new InventoryConfigException(String.format("Property '%s' missing at '%s'", ACTION_TYPE_KEY, actionSection.getCurrentPath()));
-            }
-
-            String clickActionType = actionSection.getString(ACTION_TYPE_KEY);
-            ClickActionLoader<ConfigurationSection> loader = this.factory.getLoader(clickActionType);
+            String clickActionType = configurationMap.getString(ACTION_KEY);
+            ClickActionLoader<ConfigurationMap> loader = this.factory.getLoader(clickActionType);
 
             if (loader == null) {
-                throw new InventoryConfigException(String.format("Invalid action type '%s' at '%s'", clickActionType, actionSection.getCurrentPath()));
+                throw new InventoryConfigException("Invalid action type '%s' at '%s'".formatted(clickActionType, configurationMap.getCurrentPath()));
             }
 
-            ClickAction action = loader.load(actionSection);
-
+            ClickAction action = loader.load(configurationMap);
             actions.add(action);
         }
 

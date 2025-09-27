@@ -1,5 +1,6 @@
 package com.github.syr0ws.craftventory.common;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.InventoryService;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoaderFactory;
 import com.github.syr0ws.craftventory.api.config.dao.InventoryConfigDAO;
@@ -55,9 +56,9 @@ public class CraftVentoryLibrary {
      *
      * @return A fully configured {@link ClickActionLoaderFactory} for loading click actions from YAML files.
      */
-    public static ClickActionLoaderFactory<ConfigurationSection> createDefaultClickActionLoaderFactory() {
+    public static ClickActionLoaderFactory<ConfigurationMap> createDefaultClickActionLoaderFactory() {
 
-        ClickActionLoaderFactory<ConfigurationSection> factory = new YamlClickActionLoaderFactory();
+        ClickActionLoaderFactory<ConfigurationMap> factory = new YamlClickActionLoaderFactory();
 
         for(YamlActionLoaderEnum action : YamlActionLoaderEnum.values()) {
             factory.addLoader(action.getLoader());
