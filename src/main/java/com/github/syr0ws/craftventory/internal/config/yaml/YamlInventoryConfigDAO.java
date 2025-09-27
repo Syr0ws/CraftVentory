@@ -1,5 +1,6 @@
 package com.github.syr0ws.craftventory.internal.config.yaml;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.InventoryConfig;
 import com.github.syr0ws.craftventory.api.config.InventoryItemConfig;
 import com.github.syr0ws.craftventory.api.config.PaginationConfig;
@@ -29,7 +30,7 @@ public class YamlInventoryConfigDAO implements InventoryConfigDAO {
     private final YamlInventoryContentLoader contentLoader;
     private final YamlInventoryPaginationLoader paginationLoader;
 
-    public YamlInventoryConfigDAO(ClickActionLoaderFactory<ConfigurationSection> factory) {
+    public YamlInventoryConfigDAO(ClickActionLoaderFactory<ConfigurationMap> factory) {
 
         YamlInventoryItemLoader itemLoader = new YamlInventoryItemLoader(factory);
 
