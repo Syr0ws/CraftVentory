@@ -1,6 +1,6 @@
 package com.github.syr0ws.craftventory.common.transform.provider;
 
-import com.github.syr0ws.craftventory.api.config.InventoryConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryConfig;
 import com.github.syr0ws.craftventory.api.inventory.CraftVentoryType;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
 import com.github.syr0ws.craftventory.api.transform.enhancement.EnhancementManager;

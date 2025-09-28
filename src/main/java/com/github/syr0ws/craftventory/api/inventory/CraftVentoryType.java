@@ -2,6 +2,8 @@ package com.github.syr0ws.craftventory.api.inventory;
 
 import org.bukkit.event.inventory.InventoryType;
 
+import java.util.Arrays;
+
 /**
  * Enum that defines the supported inventory types.
  */
@@ -61,5 +63,15 @@ public enum CraftVentoryType {
      */
     public InventoryType getBukkitType() {
         return this.type;
+    }
+
+    /**
+     * Returns whether the given type string corresponds to a valid {@code CraftVentoryType}.
+     *
+     * @param type the type string to check
+     * @return true if the type is valid, false otherwise
+     */
+    public static boolean isValidType(String type) {
+        return type != null && Arrays.stream(values()).anyMatch(value -> value.name().equals(type));
     }
 }

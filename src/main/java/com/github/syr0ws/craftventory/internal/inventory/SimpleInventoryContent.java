@@ -76,7 +76,7 @@ public class SimpleInventoryContent implements InventoryContent {
     }
 
     @Override
-    public void removeItems(Set<Integer> slots) {
+    public void removeItems(Collection<Integer> slots) {
 
         if(slots == null) {
             throw new IllegalArgumentException("slots cannot be null");

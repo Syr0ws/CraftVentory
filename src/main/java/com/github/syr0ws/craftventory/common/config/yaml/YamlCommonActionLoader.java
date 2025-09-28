@@ -1,7 +1,7 @@
 package com.github.syr0ws.craftventory.common.config.yaml;
 
 import com.github.syr0ws.crafter.config.ConfigurationMap;
-import com.github.syr0ws.craftventory.api.config.action.ClickActionLoader;
+import com.github.syr0ws.craftventory.api.config.loader.action.ClickActionLoader;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
 import com.github.syr0ws.craftventory.api.inventory.action.ClickType;
 

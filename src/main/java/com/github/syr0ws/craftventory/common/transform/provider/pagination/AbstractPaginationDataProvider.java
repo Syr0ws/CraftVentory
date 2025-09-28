@@ -1,7 +1,7 @@
 package com.github.syr0ws.craftventory.common.transform.provider.pagination;
 
-import com.github.syr0ws.craftventory.api.config.InventoryConfig;
-import com.github.syr0ws.craftventory.api.config.PaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryConfig;
+import com.github.syr0ws.craftventory.api.config.model.pagination.PaginationConfig;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
 import com.github.syr0ws.craftventory.api.transform.dto.DTO;
 import com.github.syr0ws.craftventory.api.transform.provider.Provider;
@@ -17,7 +17,7 @@ public abstract class AbstractPaginationDataProvider<T extends DTO> implements P
         String paginationId = context.findData(CommonContextKey.PAGINATION_ID, String.class)
                 .orElseThrow(() -> new NullPointerException("No pagination id found in the context"));
 
-        return config.getPaginationConfig(paginationId)
+        return config.getPaginations().getPagination(paginationId)
                 .orElseThrow(() -> new NullPointerException(String.format("No pagination found with id '%s' in the configuration", paginationId)));
     }
 
@@ -25,7 +25,7 @@ public abstract class AbstractPaginationDataProvider<T extends DTO> implements P
 
         InventoryConfig config = provider.getConfig();
 
-        return config.getPaginationConfig(paginationId)
+        return config.getPaginations().getPagination(paginationId)
                 .orElseThrow(() -> new NullPointerException(String.format("No pagination found with id '%s' in the configuration", paginationId)));
     }
 }
