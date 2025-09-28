@@ -55,15 +55,6 @@ public class InventoryPatternConfig {
     }
 
     /**
-     * Returns the inventory pattern as a list of strings.
-     *
-     * @return the inventory pattern
-     */
-    public List<String> getPattern() {
-        return this.pattern;
-    }
-
-    /**
      * Retrieves the symbol at the specified slot in the inventory pattern.
      *
      * @param slot the slot index
@@ -80,6 +71,15 @@ public class InventoryPatternConfig {
         int column = slot % this.type.getColumns();
 
         return this.pattern.get(row).charAt(column);
+    }
+
+    /**
+     * Returns the inventory pattern as a list of strings.
+     *
+     * @return the inventory pattern
+     */
+    public List<String> getPattern() {
+        return this.pattern;
     }
 
     /**
