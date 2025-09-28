@@ -2,7 +2,7 @@ package com.github.syr0ws.craftventory.internal.transform.provider;
 
 import com.github.syr0ws.crafter.file.FileUtil;
 import com.github.syr0ws.craftventory.api.InventoryService;
-import com.github.syr0ws.craftventory.api.config.InventoryConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryConfig;
 import com.github.syr0ws.craftventory.api.inventory.CraftVentory;
 import com.github.syr0ws.craftventory.api.inventory.InventoryViewer;
 import com.github.syr0ws.craftventory.api.inventory.pagination.Pagination;
@@ -103,7 +103,7 @@ public class SimpleInventoryProvider implements InventoryProvider {
                 FileUtil.copyResource(this.plugin, resourceFile, path, false);
             }
 
-            // this.inventoryConfig = this.descriptor.getInventoryConfigDAO().loadConfig(path);
+            this.inventoryConfig = this.descriptor.getInventoryConfigDAO().loadConfig(path);
 
         } catch (Exception exception) {
             String message = String.format("An error occurred while loading the configuration file '%s'", path);
@@ -143,9 +143,9 @@ public class SimpleInventoryProvider implements InventoryProvider {
 
     private void registerPaginations(CraftVentory inventory) {
 
-        this.inventoryConfig.getPaginationConfigs().forEach(paginationConfig -> {
+        this.inventoryConfig.getPaginations().getPaginations().forEach(paginationConfig -> {
 
-            String paginationId = paginationConfig.getId();
+            String paginationId = paginationConfig.getPaginationId();
 
             Context context = inventory.getDefaultContext();
             context.addData(CommonContextKey.PAGINATION_ID, paginationId, String.class);

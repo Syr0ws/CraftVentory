@@ -1,13 +1,17 @@
 package com.github.syr0ws.craftventory.common.transform.provider.pagination;
 
-import com.github.syr0ws.craftventory.api.config.InventoryItemConfig;
-import com.github.syr0ws.craftventory.api.config.PaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryItemConfig;
+import com.github.syr0ws.craftventory.api.config.model.pagination.PaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryPatternConfig;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
 import com.github.syr0ws.craftventory.api.transform.item.ItemParser;
 import com.github.syr0ws.craftventory.api.util.Context;
 import com.github.syr0ws.craftventory.common.transform.dto.InventoryItemDto;
 import com.github.syr0ws.craftventory.common.transform.dto.pagination.PaginationPageItemDto;
 import com.github.syr0ws.craftventory.common.transform.provider.ProviderNameEnum;
+
+import java.util.HashSet;
+import java.util.List;
 
 public class PaginationPreviousPageItemProvider extends AbstractPaginationPageItemProvider {
 
@@ -20,15 +24,18 @@ public class PaginationPreviousPageItemProvider extends AbstractPaginationPageIt
 
         // Data retrieval from configuration
         PaginationConfig paginationConfig = super.getPaginationConfig(provider, context);
-        InventoryItemConfig itemConfig = paginationConfig.getPreviousPageItem();
+        InventoryItemConfig itemConfig = paginationConfig.getPreviousPageItem().getNavItem();
+
+        InventoryPatternConfig pattern = provider.getConfig().getPattern();
+        List<Integer> slots = pattern.getSlots(paginationConfig.getPreviousPageItem().getSymbol());
 
         // DTO creation
         InventoryItemDto dto = new PaginationPageItemDto(
-                itemConfig.getId(),
-                itemConfig.getItemStack(),
+                itemConfig.getItemId(),
+                itemConfig.getItem().build(),
                 itemConfig.getActions(),
-                paginationConfig.getPreviousPageItemSlots(),
-                paginationConfig.getId(),
+                new HashSet<>(slots),
+                paginationConfig.getPaginationId(),
                 PaginationPageItemDto.PageItemType.PREVIOUS_PAGE
         );
 

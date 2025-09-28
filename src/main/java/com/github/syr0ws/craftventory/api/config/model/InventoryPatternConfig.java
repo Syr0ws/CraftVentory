@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class InventoryPatternConfig {
 
+    private final CraftVentoryType type;
     private final List<String> pattern;
     private final Map<Character, List<Integer>> symbolSlots;
 
@@ -22,6 +23,9 @@ public class InventoryPatternConfig {
      */
     public InventoryPatternConfig(List<String> pattern, CraftVentoryType type) {
         Validate.notNull(pattern, "pattern cannot be null");
+        Validate.notNull(type, "type cannot be null");
+
+        this.type = type;
         this.pattern = List.copyOf(pattern);
         this.symbolSlots = Map.copyOf(this.getSymbolSlots(pattern, type));
     }
@@ -57,6 +61,25 @@ public class InventoryPatternConfig {
      */
     public List<String> getPattern() {
         return this.pattern;
+    }
+
+    /**
+     * Retrieves the symbol at the specified slot in the inventory pattern.
+     *
+     * @param slot the slot index
+     * @return the symbol at the given slot
+     * @throws IllegalArgumentException if the slot index is invalid
+     */
+    public char getSymbolAt(int slot) {
+
+        if(slot < 0 || slot >= this.type.getSize()) {
+            throw new IllegalArgumentException("Invalid slot %d".formatted(slot));
+        }
+
+        int row = slot / this.type.getColumns();
+        int column = slot % this.type.getColumns();
+
+        return this.pattern.get(row).charAt(column);
     }
 
     /**

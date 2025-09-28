@@ -1,7 +1,9 @@
 package com.github.syr0ws.craftventory.common.transform.provider.pagination;
 
-import com.github.syr0ws.craftventory.api.config.InventoryItemConfig;
-import com.github.syr0ws.craftventory.api.config.PaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryItemConfig;
+import com.github.syr0ws.craftventory.api.config.model.pagination.DynamicPaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.pagination.PaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.pagination.StaticPaginationConfig;
 import com.github.syr0ws.craftventory.api.transform.InventoryProvider;
 import com.github.syr0ws.craftventory.api.transform.enhancement.EnhancementManager;
 import com.github.syr0ws.craftventory.api.transform.item.ItemParser;
@@ -27,13 +29,13 @@ public class PaginationItemProvider extends AbstractPaginationDataProvider<Pagin
     public PaginationItemDto provide(InventoryProvider provider, Context context) {
 
         // Data retrieval from configuration
-        PaginationConfig paginationConfig = super.getPaginationConfig(provider, context);
-        InventoryItemConfig itemConfig = paginationConfig.getItem();
+        DynamicPaginationConfig paginationConfig = (DynamicPaginationConfig) super.getPaginationConfig(provider, context);
+        InventoryItemConfig itemConfig = paginationConfig.getPaginationItem();
 
         // DTO creation
         PaginationItemDto dto = new PaginationItemDto(
-                paginationConfig.getId(),
-                itemConfig.getItemStack(),
+                paginationConfig.getPaginationId(),
+                itemConfig.getItem().build(),
                 itemConfig.getActions()
         );
 

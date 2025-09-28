@@ -2,6 +2,7 @@ package com.github.syr0ws.craftventory.api.inventory;
 
 import com.github.syr0ws.craftventory.api.inventory.item.InventoryItem;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -56,7 +57,7 @@ public interface InventoryContent {
      * @param slots The set of slots from which the items will be removed.
      * @throws IllegalArgumentException If {@code slots} is null one of the slots is invalid.
      */
-    void removeItems(Set<Integer> slots);
+    void removeItems(Collection<Integer> slots);
 
     /**
      * Checks if there is an item at a specific slot in the inventory.
