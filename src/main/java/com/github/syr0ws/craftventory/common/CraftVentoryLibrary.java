@@ -2,7 +2,6 @@ package com.github.syr0ws.craftventory.common;
 
 import com.github.syr0ws.crafter.util.Validate;
 import com.github.syr0ws.craftventory.api.InventoryService;
-import com.github.syr0ws.craftventory.api.config.action.ClickActionLoaderFactory;
 import com.github.syr0ws.craftventory.api.config.dao.InventoryConfigDAO;
 import com.github.syr0ws.craftventory.api.config.loader.action.ClickActionLoaderManager;
 import com.github.syr0ws.craftventory.api.util.Context;
@@ -59,10 +58,9 @@ public class CraftVentoryLibrary {
     }
 
     /**
-     * Creates and configures a default {@link ClickActionLoaderFactory} for loading click actions
-     * from YAML configuration files.
+     * Creates and configures a default {@link ClickActionLoaderManager} with built-in loaders for various click actions.
      *
-     * @return A fully configured {@link ClickActionLoaderFactory} for loading click actions from YAML files.
+     * @return A fully configured {@link ClickActionLoaderManager} with default action loaders.
      */
     public static ClickActionLoaderManager createDefaultClickActionLoaderManager() {
 
