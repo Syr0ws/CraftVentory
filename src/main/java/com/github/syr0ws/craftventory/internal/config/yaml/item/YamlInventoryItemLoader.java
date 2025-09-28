@@ -68,18 +68,18 @@ public class YamlInventoryItemLoader {
 
     private List<ClickAction> loadActions(ConfigurationSection section) throws InventoryConfigException {
 
-        if(!section.isSet(ACTIONS_KEY)) {
+        if (!section.isSet(ACTIONS_KEY)) {
             return new ArrayList<>();
         }
 
         List<Map<?,?>> actionsListMap = section.getMapList(ACTIONS_KEY);
         List<ClickAction> actions = new ArrayList<>();
 
-        for(Map<?,?> map : actionsListMap) {
+        for (Map<?,?> map : actionsListMap) {
 
             ConfigurationMap configurationMap = new ConfigurationMap(section, map);
 
-            if(!configurationMap.isString(ACTION_KEY)) {
+            if (!configurationMap.isString(ACTION_KEY)) {
                 throw new InventoryConfigException("Property '%s' not found or is not a string at '%s'".formatted(ACTION_KEY, configurationMap.getCurrentPath()));
             }
 
