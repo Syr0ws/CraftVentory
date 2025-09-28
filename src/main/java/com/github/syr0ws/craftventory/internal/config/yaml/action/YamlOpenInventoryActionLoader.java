@@ -1,11 +1,11 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.action;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
 import com.github.syr0ws.craftventory.api.inventory.action.ClickAction;
 import com.github.syr0ws.craftventory.api.inventory.action.ClickType;
 import com.github.syr0ws.craftventory.common.config.yaml.YamlCommonActionLoader;
 import com.github.syr0ws.craftventory.common.inventory.action.OpenInventoryAction;
-import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.Set;
 
@@ -15,21 +15,21 @@ public class YamlOpenInventoryActionLoader extends YamlCommonActionLoader {
     private static final String NEW_HISTORY = "new-history";
 
     @Override
-    public ClickAction load(ConfigurationSection section) throws InventoryConfigException {
+    public ClickAction load(ConfigurationMap map) throws InventoryConfigException {
 
-        Set<ClickType> clickTypes = super.loadClickTypes(section);
+        Set<ClickType> clickTypes = super.loadClickTypes(map);
 
-        if(!section.isString(INVENTORY_ID_KEY)) {
-            throw new InventoryConfigException(String.format("Property '%s.%s' not found or is not a string", INVENTORY_ID_KEY, section.getCurrentPath()));
+        if (!map.isString(INVENTORY_ID_KEY)) {
+            throw new InventoryConfigException("Property '%s' not found or is not a string for action '%s' at '%s'".formatted(INVENTORY_ID_KEY, this.getName(), map.getCurrentPath()));
         }
 
-        String inventoryId = section.getString(INVENTORY_ID_KEY);
+        String inventoryId = map.getString(INVENTORY_ID_KEY);
 
-        if(inventoryId.isEmpty()) {
-            throw new InventoryConfigException(String.format("Property '%s.%s' cannot be empty", INVENTORY_ID_KEY, section.getCurrentPath()));
+        if (inventoryId.isEmpty()) {
+            throw new InventoryConfigException("Property '%s' cannot be empty for action '%s' at '%s'".formatted(INVENTORY_ID_KEY, this.getName(), map.getCurrentPath()));
         }
 
-        boolean newHistory = section.getBoolean(NEW_HISTORY, true);
+        boolean newHistory = map.getBoolean(NEW_HISTORY, true);
 
         return new OpenInventoryAction(clickTypes, inventoryId, newHistory);
     }

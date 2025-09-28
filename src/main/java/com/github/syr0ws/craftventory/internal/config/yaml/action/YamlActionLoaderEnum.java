@@ -1,5 +1,6 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.action;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoader;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -20,13 +21,13 @@ public enum YamlActionLoaderEnum {
     BACK(new YamlBackActionLoader()),
     FORWARD(new YamlForwardActionLoader());
 
-    private final ClickActionLoader<ConfigurationSection> loader;
+    private final ClickActionLoader<ConfigurationMap> loader;
 
-    YamlActionLoaderEnum(ClickActionLoader<ConfigurationSection> loader) {
+    YamlActionLoaderEnum(ClickActionLoader<ConfigurationMap> loader) {
         this.loader = loader;
     }
 
-    public ClickActionLoader<ConfigurationSection> getLoader() {
+    public ClickActionLoader<ConfigurationMap> getLoader() {
         return this.loader;
     }
 }

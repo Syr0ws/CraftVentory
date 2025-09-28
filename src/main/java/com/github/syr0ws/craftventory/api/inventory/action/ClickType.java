@@ -15,7 +15,7 @@ public enum ClickType {
      * @param name The name to check. Must not be {@code null}.
      * @return {@code true} if the name matches a {@link ClickType}, ignoring case; {@code false} otherwise.
      */
-    public static boolean isClickType(String name) {
-        return Arrays.stream(values()).anyMatch(value -> value.name().equalsIgnoreCase(name));
+    public static boolean isValidClickType(String name) {
+        return Arrays.stream(values()).anyMatch(value -> value.name().equals(name));
     }
 }
