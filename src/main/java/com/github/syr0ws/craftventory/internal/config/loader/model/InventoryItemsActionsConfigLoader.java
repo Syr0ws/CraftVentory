@@ -31,18 +31,12 @@ public class InventoryItemsActionsConfigLoader implements ConfigLoader<Inventory
     @Override
     public InventoryItemActionsConfig load(ConfigurationSection section) throws InventoryConfigException {
 
-        ConfigurationSection actionsSection = section.getConfigurationSection(PROPERTY_ACTIONS);
-
-        if(actionsSection == null) {
-            return new InventoryItemActionsConfig(Collections.emptyList());
-        }
-
-        List<Map<?,?>> actionPropertiesMapList = actionsSection.getMapList(PROPERTY_ACTIONS);
+        List<Map<?,?>> actionPropertiesMapList = section.getMapList(PROPERTY_ACTIONS);
         List<ClickAction> actions = new ArrayList<>();
 
         for(Map<?,?> actionProperties : actionPropertiesMapList) {
 
-            ConfigurationMap config = new ConfigurationMap(actionsSection, actionProperties);
+            ConfigurationMap config = new ConfigurationMap(section, actionProperties);
 
             if(!config.isString(PROPERTY_ACTION_NAME)) {
                 throw new InventoryConfigException("Property '%s' not found in an action at '%s'".formatted(PROPERTY_ACTION_NAME, section.getCurrentPath()));
