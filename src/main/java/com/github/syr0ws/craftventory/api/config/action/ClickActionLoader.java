@@ -1,23 +1,22 @@
 package com.github.syr0ws.craftventory.api.config.action;
 
+import com.github.syr0ws.crafter.config.ConfigurationMap;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
 import com.github.syr0ws.craftventory.api.inventory.action.ClickAction;
 
 /**
  * Responsible for loading a specific {@link ClickAction} instance from a given data source.
- *
- * @param <T> The type of the data source from which the {@link ClickAction} is loaded.
  */
-public interface ClickActionLoader<T> {
+public interface ClickActionLoader {
 
     /**
-     * Loads a {@link ClickAction} from the specified data source.
+     * Loads a {@link ClickAction} from the provided configuration map.
      *
-     * @param dataSource The data source from which to load the {@link ClickAction}. Must not be {@code null}.
-     * @return The created {@link ClickAction}.
-     * @throws InventoryConfigException If an error occurs while parsing or loading the {@link ClickAction} from the data source.
+     * @param map The configuration map containing the data to load the action from. Must not be {@code null}.
+     * @return The loaded {@link ClickAction} instance.
+     * @throws InventoryConfigException If there is an error during the loading process.
      */
-    ClickAction load(T dataSource) throws InventoryConfigException;
+    ClickAction load(ConfigurationMap map) throws InventoryConfigException;
 
     /**
      * Retrieves the name of this loader.

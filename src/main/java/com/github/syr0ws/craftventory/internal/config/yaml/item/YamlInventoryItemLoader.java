@@ -20,10 +20,10 @@ public class YamlInventoryItemLoader {
     private static final String ACTIONS_KEY = "actions";
     private static final String ACTION_KEY = "action";
 
-    private final ClickActionLoaderFactory<ConfigurationMap> factory;
+    private final ClickActionLoaderFactory factory;
     private final YamlItemStackLoader itemStackLoader = new YamlItemStackLoader();
 
-    public YamlInventoryItemLoader(ClickActionLoaderFactory<ConfigurationMap> factory) {
+    public YamlInventoryItemLoader(ClickActionLoaderFactory factory) {
 
         if (factory == null) {
             throw new IllegalArgumentException("factory cannot be null");
@@ -84,7 +84,7 @@ public class YamlInventoryItemLoader {
             }
 
             String clickActionType = configurationMap.getString(ACTION_KEY);
-            ClickActionLoader<ConfigurationMap> loader = this.factory.getLoader(clickActionType);
+            ClickActionLoader loader = this.factory.getLoader(clickActionType);
 
             if (loader == null) {
                 throw new InventoryConfigException("Invalid action type '%s' at '%s'".formatted(clickActionType, configurationMap.getCurrentPath()));

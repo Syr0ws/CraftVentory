@@ -30,7 +30,7 @@ public class YamlInventoryConfigDAO implements InventoryConfigDAO {
     private final YamlInventoryContentLoader contentLoader;
     private final YamlInventoryPaginationLoader paginationLoader;
 
-    public YamlInventoryConfigDAO(ClickActionLoaderFactory<ConfigurationMap> factory) {
+    public YamlInventoryConfigDAO(ClickActionLoaderFactory factory) {
 
         YamlInventoryItemLoader itemLoader = new YamlInventoryItemLoader(factory);
 

@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class YamlCommonActionLoader implements ClickActionLoader<ConfigurationMap> {
+public abstract class YamlCommonActionLoader implements ClickActionLoader {
 
     private static final String CLICK_TYPES_KEY = "click-types";
 
