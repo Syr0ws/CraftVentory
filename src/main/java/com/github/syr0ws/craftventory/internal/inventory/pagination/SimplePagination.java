@@ -1,6 +1,7 @@
 package com.github.syr0ws.craftventory.internal.inventory.pagination;
 
-import com.github.syr0ws.craftventory.api.config.PaginationConfig;
+import com.github.syr0ws.craftventory.api.config.model.InventoryPatternConfig;
+import com.github.syr0ws.craftventory.api.config.model.pagination.PaginationConfig;
 import com.github.syr0ws.craftventory.api.inventory.CraftVentory;
 import com.github.syr0ws.craftventory.api.inventory.InventoryContent;
 import com.github.syr0ws.craftventory.api.inventory.data.DataStore;
@@ -127,8 +128,8 @@ public class SimplePagination<T> implements Pagination<T> {
 
         Context context = this.getPaginationContext();
 
-        PaginationConfig paginationConfig = provider.getConfig()
-                .getPaginationConfig(this.id)
+        PaginationConfig paginationConfig = provider.getConfig().getPaginations()
+                .getPagination(this.id)
                 .orElseThrow(() -> new InventoryException(String.format("Cannot update page items: no pagination with id '%s' found in the configuration", this.id)));
 
         // Previous page item handling.
@@ -143,7 +144,9 @@ public class SimplePagination<T> implements Pagination<T> {
                     });
 
         } else {
-            content.removeItems(paginationConfig.getPreviousPageItemSlots());
+            InventoryPatternConfig pattern = provider.getConfig().getPattern();
+            List<Integer> slots = pattern.getSlots(paginationConfig.getPreviousPageItem().getSymbol());
+            content.removeItems(slots);
         }
 
         // Next page item handling.
@@ -157,7 +160,9 @@ public class SimplePagination<T> implements Pagination<T> {
                         content.setItem(item, dto.getSlots());
                     });
         } else {
-            content.removeItems(paginationConfig.getNextPageItemSlots());
+            InventoryPatternConfig pattern = provider.getConfig().getPattern();
+            List<Integer> slots = pattern.getSlots(paginationConfig.getNextPageItem().getSymbol());
+            content.removeItems(slots);
         }
     }
 

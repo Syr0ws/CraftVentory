@@ -35,7 +35,13 @@
         <dependency>
             <groupId>com.github.syr0ws</groupId>
             <artifactId>Crafter</artifactId>
-            <version>0.0.2</version>
+            <version>1.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.syr0ws</groupId>
+            <artifactId>CraftStack</artifactId>
+            <version>1.1.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

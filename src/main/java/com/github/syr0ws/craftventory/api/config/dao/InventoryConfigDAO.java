@@ -1,7 +1,7 @@
 package com.github.syr0ws.craftventory.api.config.dao;
 
-import com.github.syr0ws.craftventory.api.config.InventoryConfig;
 import com.github.syr0ws.craftventory.api.config.exception.InventoryConfigException;
+import com.github.syr0ws.craftventory.api.config.model.InventoryConfig;
 
 import java.nio.file.Path;
 import java.util.Set;
