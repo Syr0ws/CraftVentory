@@ -24,13 +24,13 @@ public abstract class AbstractInventoryItemLoader<T> implements ConfigLoader<T> 
     protected String loadItemId(ConfigurationSection section) throws InventoryConfigException {
 
         if(!section.isString(PROPERTY_ITEM_ID)) {
-            throw new InventoryConfigException("Property '%s.%s' not found or is not a string".formatted(PROPERTY_ITEM_ID, section.getCurrentPath()));
+            throw new InventoryConfigException("Property '%s.%s' not found or is not a string".formatted(section.getCurrentPath(), PROPERTY_ITEM_ID));
         }
 
         String itemId = section.getString(PROPERTY_ITEM_ID, "").trim();
 
         if(itemId.isEmpty()) {
-            throw new InventoryConfigException("Property '%s.%s' cannot be blank or empty".formatted(PROPERTY_ITEM_ID, section.getCurrentPath()));
+            throw new InventoryConfigException("Property '%s.%s' cannot be blank or empty".formatted(section.getCurrentPath(), PROPERTY_ITEM_ID));
         }
 
         return itemId;
