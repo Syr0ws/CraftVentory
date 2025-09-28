@@ -7,10 +7,10 @@ import com.github.syr0ws.craftventory.api.config.loader.action.ClickActionLoader
 import com.github.syr0ws.craftventory.api.util.Context;
 import com.github.syr0ws.craftventory.internal.config.loader.ConfigLoaderManager;
 import com.github.syr0ws.craftventory.internal.config.loader.action.SimpleClickActionLoaderManager;
+import com.github.syr0ws.craftventory.internal.config.loader.action.ActionLoaderEnum;
 import com.github.syr0ws.craftventory.internal.util.SimpleContext;
 import com.github.syr0ws.craftventory.internal.SimpleInventoryService;
 import com.github.syr0ws.craftventory.internal.config.dao.YamlInventoryConfigDAO;
-import com.github.syr0ws.craftventory.internal.config.yaml.action.*;
 import com.github.syr0ws.craftventory.internal.inventory.listener.CraftVentoryListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -66,7 +66,7 @@ public class CraftVentoryLibrary {
 
         ClickActionLoaderManager manager = new SimpleClickActionLoaderManager();
 
-        for(YamlActionLoaderEnum action : YamlActionLoaderEnum.values()) {
+        for(ActionLoaderEnum action : ActionLoaderEnum.values()) {
             manager.addLoader(action.getLoader());
         }
 
