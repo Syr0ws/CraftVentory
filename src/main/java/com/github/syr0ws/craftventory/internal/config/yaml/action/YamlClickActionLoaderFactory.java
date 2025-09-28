@@ -1,9 +1,7 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.action;
 
-import com.github.syr0ws.crafter.config.ConfigurationMap;
-import com.github.syr0ws.craftventory.api.config.action.ClickActionLoader;
+import com.github.syr0ws.craftventory.api.config.loader.action.ClickActionLoader;
 import com.github.syr0ws.craftventory.api.config.action.ClickActionLoaderFactory;
-import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.HashMap;
 import java.util.HashSet;

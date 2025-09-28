@@ -1,8 +1,6 @@
 package com.github.syr0ws.craftventory.internal.config.yaml.action;
 
-import com.github.syr0ws.crafter.config.ConfigurationMap;
-import com.github.syr0ws.craftventory.api.config.action.ClickActionLoader;
-import org.bukkit.configuration.ConfigurationSection;
+import com.github.syr0ws.craftventory.api.config.loader.action.ClickActionLoader;
 
 public enum YamlActionLoaderEnum {
 

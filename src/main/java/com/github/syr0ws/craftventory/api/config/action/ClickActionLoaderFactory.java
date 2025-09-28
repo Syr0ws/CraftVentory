@@ -1,5 +1,7 @@
 package com.github.syr0ws.craftventory.api.config.action;
 
+import com.github.syr0ws.craftventory.api.config.loader.action.ClickActionLoader;
+
 import java.util.Set;
 
 /**
