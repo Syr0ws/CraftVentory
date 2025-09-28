@@ -98,7 +98,8 @@ public class InventoryPatternConfig {
      * @return a list of slots for the symbol
      */
     public List<Integer> getSlots(char symbol) {
-        return List.copyOf(this.symbolSlots.get(symbol));
+        List<Integer> slots = this.symbolSlots.get(symbol);
+        return slots == null ? Collections.emptyList() : List.copyOf(slots);
     }
 
     /**
