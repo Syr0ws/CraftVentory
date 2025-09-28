@@ -33,7 +33,15 @@ public class InventoryConfigLoader implements ConfigLoader<InventoryConfig> {
 
     @Override
     public InventoryConfig load(ConfigurationSection section) throws InventoryConfigException {
-        return null;
+
+        String inventoryId = this.loadInventoryId(section);
+        String title = this.loadTitle(section);
+        CraftVentoryType type = this.loadInventoryType(section);
+        InventoryPatternConfig pattern = this.loadPattern(section, type);
+        InventoryContentConfig content = this.loadContent(section);
+        PaginationsConfig paginations = this.loadPaginations(section);
+
+        return new InventoryConfig(inventoryId, title, type, pattern, content, paginations);
     }
 
     @Override
