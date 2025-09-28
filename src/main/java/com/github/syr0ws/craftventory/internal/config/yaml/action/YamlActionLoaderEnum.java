@@ -21,13 +21,13 @@ public enum YamlActionLoaderEnum {
     BACK(new YamlBackActionLoader()),
     FORWARD(new YamlForwardActionLoader());
 
-    private final ClickActionLoader<ConfigurationMap> loader;
+    private final ClickActionLoader loader;
 
-    YamlActionLoaderEnum(ClickActionLoader<ConfigurationMap> loader) {
+    YamlActionLoaderEnum(ClickActionLoader loader) {
         this.loader = loader;
     }
 
-    public ClickActionLoader<ConfigurationMap> getLoader() {
+    public ClickActionLoader getLoader() {
         return this.loader;
     }
 }

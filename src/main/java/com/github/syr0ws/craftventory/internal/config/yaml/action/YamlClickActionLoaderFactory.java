@@ -10,12 +10,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<ConfigurationMap> {
+public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory {
 
-    private final Map<String, ClickActionLoader<ConfigurationMap>> loaders = new HashMap<>();
+    private final Map<String, ClickActionLoader> loaders = new HashMap<>();
 
     @Override
-    public ClickActionLoader<ConfigurationMap> getLoader(String name) {
+    public ClickActionLoader getLoader(String name) {
 
         if (name == null) {
             throw new IllegalArgumentException("type cannot be null");
@@ -25,7 +25,7 @@ public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<Co
     }
 
     @Override
-    public void addLoader(ClickActionLoader<ConfigurationMap> loader) {
+    public void addLoader(ClickActionLoader loader) {
 
         if (loader == null) {
             throw new IllegalArgumentException("loader cannot be null");
@@ -35,7 +35,7 @@ public class YamlClickActionLoaderFactory implements ClickActionLoaderFactory<Co
     }
 
     @Override
-    public Set<ClickActionLoader<ConfigurationMap>> getLoaders() {
+    public Set<ClickActionLoader> getLoaders() {
         return new HashSet<>(this.loaders.values());
     }
 }

@@ -46,7 +46,7 @@ public class CraftVentoryLibrary {
      * @param factory The ClickActionLoaderFactory used for loading click actions.
      * @return An instance of {@link InventoryConfigDAO} for loading inventory configurations.
      */
-    public static InventoryConfigDAO createDefaultConfigDAO(ClickActionLoaderFactory<ConfigurationMap> factory) {
+    public static InventoryConfigDAO createDefaultConfigDAO(ClickActionLoaderFactory factory) {
         return new YamlInventoryConfigDAO(factory);
     }
 
@@ -56,9 +56,9 @@ public class CraftVentoryLibrary {
      *
      * @return A fully configured {@link ClickActionLoaderFactory} for loading click actions from YAML files.
      */
-    public static ClickActionLoaderFactory<ConfigurationMap> createDefaultClickActionLoaderFactory() {
+    public static ClickActionLoaderFactory createDefaultClickActionLoaderFactory() {
 
-        ClickActionLoaderFactory<ConfigurationMap> factory = new YamlClickActionLoaderFactory();
+        ClickActionLoaderFactory factory = new YamlClickActionLoaderFactory();
 
         for(YamlActionLoaderEnum action : YamlActionLoaderEnum.values()) {
             factory.addLoader(action.getLoader());

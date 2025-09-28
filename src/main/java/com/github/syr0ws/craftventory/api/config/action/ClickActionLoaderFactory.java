@@ -4,17 +4,15 @@ import java.util.Set;
 
 /**
  * Factory interface for managing and providing {@link ClickActionLoader} instances.
- *
- * @param <T> The type of the data source handled by the {@link ClickActionLoader}.
  */
-public interface ClickActionLoaderFactory<T> {
+public interface ClickActionLoaderFactory {
 
     /**
      * Registers a new {@link ClickActionLoader}.
      *
      * @param loader The {@link ClickActionLoader} to register. Must not be {@code null}.
      */
-    void addLoader(ClickActionLoader<T> loader);
+    void addLoader(ClickActionLoader loader);
 
     /**
      * Retrieves a {@link ClickActionLoader} by its name.
@@ -23,7 +21,7 @@ public interface ClickActionLoaderFactory<T> {
      * @return The corresponding {@link ClickActionLoader}, or {@code null} if no loader
      *         with the specified name is registered.
      */
-    ClickActionLoader<T> getLoader(String name);
+    ClickActionLoader getLoader(String name);
 
     /**
      * Retrieves all registered {@link ClickActionLoader} instances.
@@ -31,5 +29,5 @@ public interface ClickActionLoaderFactory<T> {
      * @return A set of all registered {@link ClickActionLoader} instances. If no loaders
      *         are registered, the set will be empty.
      */
-    Set<ClickActionLoader<T>> getLoaders();
+    Set<ClickActionLoader> getLoaders();
 }
