@@ -50,7 +50,7 @@ public class StaticPaginationConfigLoader extends PaginationConfigLoader {
 
         List<InventoryItemConfig> paginatedItems = new ArrayList<>();
 
-        for(String key : section.getKeys(false)) {
+        for(String key : paginatedItemsSection.getKeys(false)) {
 
             ConfigurationSection paginatedItemSection = paginatedItemsSection.getConfigurationSection(key);
 
