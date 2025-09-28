@@ -103,7 +103,7 @@ public class SimpleInventoryProvider implements InventoryProvider {
                 FileUtil.copyResource(this.plugin, resourceFile, path, false);
             }
 
-            this.inventoryConfig = this.descriptor.getInventoryConfigDAO().loadConfig(path);
+            // this.inventoryConfig = this.descriptor.getInventoryConfigDAO().loadConfig(path);
 
         } catch (Exception exception) {
             String message = String.format("An error occurred while loading the configuration file '%s'", path);
