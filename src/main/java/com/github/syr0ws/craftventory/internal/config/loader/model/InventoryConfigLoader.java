@@ -123,7 +123,7 @@ public class InventoryConfigLoader implements ConfigLoader<InventoryConfig> {
 
     private PaginationsConfig loadPaginations(ConfigurationSection section) throws InventoryConfigException {
 
-        if(!section.isConfigurationSection(PROPERTY_PAGINATIONS)) {
+        if (!section.isConfigurationSection(PROPERTY_PAGINATIONS)) {
             return new PaginationsConfig(Collections.emptyList());
         }
 
