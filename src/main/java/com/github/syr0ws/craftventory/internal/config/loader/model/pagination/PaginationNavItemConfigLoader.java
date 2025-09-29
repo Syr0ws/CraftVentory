@@ -26,7 +26,10 @@ public class PaginationNavItemConfigLoader implements ConfigLoader<PaginationNav
         Validate.notNull(section, "section cannot be null");
 
         InventoryItemConfig navigationItem = this.loadItem(section, PROPERTY_NAVIGATION_ITEM);
-        InventoryItemConfig noNavigationItem = this.loadItem(section, PROPERTY_NO_NAVIGATION_ITEM);
+
+        InventoryItemConfig noNavigationItem = section.isConfigurationSection(PROPERTY_NO_NAVIGATION_ITEM) ?
+                this.loadItem(section, PROPERTY_NO_NAVIGATION_ITEM) : null;
+
         char symbol = this.loadSymbol(section);
 
         return new PaginationNavItemConfig(navigationItem, noNavigationItem, symbol);
