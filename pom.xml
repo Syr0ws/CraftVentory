@@ -61,12 +61,6 @@
                         <configuration>
                             <minimizeJar>true</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <relocations>
-                                <relocation>
-                                    <pattern>com.github.syr0ws.crafter</pattern>
-                                    <shadedPattern>com.github.syr0ws.craftventory.internal.util</shadedPattern>
-                                </relocation>
-                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
