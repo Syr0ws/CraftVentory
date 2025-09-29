@@ -3,6 +3,8 @@ package com.github.syr0ws.craftventory.api.config.model.pagination;
 import com.github.syr0ws.crafter.util.Validate;
 import com.github.syr0ws.craftventory.api.config.model.InventoryItemConfig;
 
+import java.util.Optional;
+
 /**
  * Represents the configuration for a pagination navigation item, such as "previous page" or "next page".
  */
@@ -22,7 +24,6 @@ public class PaginationNavItemConfig {
      */
     public PaginationNavItemConfig(InventoryItemConfig navItem, InventoryItemConfig noNavItem, char symbol) {
         Validate.notNull(navItem, "navItem cannot be null");
-        Validate.notNull(noNavItem, "noNavItem cannot be null");
 
         this.navItem = navItem;
         this.noNavItem = noNavItem;
@@ -39,12 +40,12 @@ public class PaginationNavItemConfig {
     }
 
     /**
-     * Retrieves the item to display when navigation is not possible.
+     * Retrieves the item to display when navigation is not possible, if defined.
      *
-     * @return the no-navigation item configuration
+     * @return an {@link Optional} containing the no-navigation item configuration, or empty if not defined
      */
-    public InventoryItemConfig getNoNavItem() {
-        return this.noNavItem;
+    public Optional<InventoryItemConfig> getNoNavItem() {
+        return Optional.ofNullable(this.noNavItem);
     }
 
     /**

@@ -11,7 +11,6 @@ import org.bukkit.configuration.ConfigurationSection;
 
 public abstract class AbstractInventoryItemLoader<T> implements ConfigLoader<T> {
 
-    private static final String PROPERTY_ITEM_ID = "item-id";
     private static final String PROPERTY_ITEM = "item";
 
     private final ConfigLoaderManager manager;
@@ -21,19 +20,8 @@ public abstract class AbstractInventoryItemLoader<T> implements ConfigLoader<T> 
         this.manager = manager;
     }
 
-    protected String loadItemId(ConfigurationSection section) throws InventoryConfigException {
-
-        if(!section.isString(PROPERTY_ITEM_ID)) {
-            throw new InventoryConfigException("Property '%s.%s' not found or is not a string".formatted(section.getCurrentPath(), PROPERTY_ITEM_ID));
-        }
-
-        String itemId = section.getString(PROPERTY_ITEM_ID, "").trim();
-
-        if(itemId.isEmpty()) {
-            throw new InventoryConfigException("Property '%s.%s' cannot be blank or empty".formatted(section.getCurrentPath(), PROPERTY_ITEM_ID));
-        }
-
-        return itemId;
+    protected String loadItemId(ConfigurationSection section) {
+        return section.getName();
     }
 
     protected Item loadItem(ConfigurationSection section) throws InventoryConfigException {
