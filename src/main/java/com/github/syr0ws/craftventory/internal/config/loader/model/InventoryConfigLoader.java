@@ -14,6 +14,7 @@ import com.github.syr0ws.craftventory.internal.config.loader.ConfigLoaderRegistr
 import com.github.syr0ws.craftventory.internal.config.loader.ConfigLoaderUtils;
 import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.Collections;
 import java.util.List;
 
 public class InventoryConfigLoader implements ConfigLoader<InventoryConfig> {
@@ -121,6 +122,10 @@ public class InventoryConfigLoader implements ConfigLoader<InventoryConfig> {
     }
 
     private PaginationsConfig loadPaginations(ConfigurationSection section) throws InventoryConfigException {
+
+        if (!section.isConfigurationSection(PROPERTY_PAGINATIONS)) {
+            return new PaginationsConfig(Collections.emptyList());
+        }
 
         ConfigLoader<PaginationConfig> loader = this.manager.getLoader(ConfigLoaderRegistry.PAGINATION, PaginationConfig.class);
         List<PaginationConfig> paginations = ConfigLoaderUtils.loadObjects(section, PROPERTY_PAGINATIONS, loader);
