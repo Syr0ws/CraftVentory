@@ -6,7 +6,7 @@
 
     <groupId>com.github.syr0ws</groupId>
     <artifactId>CraftVentory</artifactId>
-    <version>2.6.0</version>
+    <version>2.6.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.github.syr0ws</groupId>
             <artifactId>CraftStack</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -60,7 +60,31 @@
                         </goals>
                         <configuration>
                             <minimizeJar>true</minimizeJar>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <!-- Useful when using the library as a dependency to not include
+                                 the shaded jars twice and avoid duplication. -->
+                            <createDependencyReducedPom>true</createDependencyReducedPom>
+                            <!-- Remove the META-INF folder (not used by Spigot) from the output jar
+                                 to remove warnings on duplicated files which only one version can be
+                                 copied to the final uber jar. -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <!-- Relocate dependencies to avoid version conflicts. -->
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.github.syr0ws.crafter</pattern>
+                                    <shadedPattern>com.github.syr0ws.craftventory.libraries.crafter</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.github.syr0ws.craftstack</pattern>
+                                    <shadedPattern>com.github.syr0ws.craftventory.libraries.craftstack</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
                 </executions>

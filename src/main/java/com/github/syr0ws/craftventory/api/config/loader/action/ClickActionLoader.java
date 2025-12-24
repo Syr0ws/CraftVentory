@@ -12,23 +12,19 @@ public interface ClickActionLoader {
     /**
      * Loads a {@link ClickAction} from the provided configuration map.
      *
-     * @param map The configuration map containing the data to load the action from. Must not be {@code null}.
-     * @return The loaded {@link ClickAction} instance.
-     * @throws InventoryConfigException If there is an error during the loading process.
+     * @param map the configuration map containing the data to load the action from
+     * @return the loaded {@link ClickAction} instance
+     * @throws InventoryConfigException if there is an error during the loading process
      */
     ClickAction load(ConfigurationMap map) throws InventoryConfigException;
 
     /**
      * Retrieves the name of this loader.
      *
-     * <p>
-     * The name if used to uniquely identify the loader. It will be used to find the right loader
-     * to load a specific action.
-     * <br/>
-     * To avoid confusion, the name of the loader should be the same as the name of the action it loads.
-     * </p>
+     * <p>The name is used to uniquely identify the loader. It will be used to find the right loader
+     * to load a specific action. To avoid confusion, the name of the loader should be the same as the name of the action it loads.</p>
      *
-     * @return The name of the loader. Must not be {@code null}.
+     * @return the name of the loader
      */
     String getName();
 }

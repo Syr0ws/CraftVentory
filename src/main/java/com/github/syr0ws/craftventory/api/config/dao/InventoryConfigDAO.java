@@ -14,10 +14,10 @@ public interface InventoryConfigDAO {
     /**
      * Loads an {@link InventoryConfig} from a specified file.
      *
-     * @param file The path to the configuration file. Must not be {@code null}.
-     * @return The loaded {@link InventoryConfig}.
-     * @throws IllegalArgumentException If file is {@code null}
-     * @throws InventoryConfigException If an error occurs while loading or parsing the configuration file.
+     * @param file the path to the configuration file. Must not be {@code null}
+     * @return the loaded {@link InventoryConfig}
+     * @throws IllegalArgumentException if file is {@code null}
+     * @throws InventoryConfigException if an error occurs while loading or parsing the configuration file
      */
     InventoryConfig loadConfig(Path file) throws InventoryConfigException;
 
@@ -31,12 +31,12 @@ public interface InventoryConfigDAO {
      * and a stack trace will be generated.
      * </p>
      *
-     * @param folder The path to the folder containing configuration files. Must not be {@code null}.
-     * @return A set of successfully loaded {@link InventoryConfig} instances. If no valid configuration files
-     *         are found, the set will be empty.
-     * @throws IllegalArgumentException If the {@code folder} parameter is {@code null}.
-     * @throws InventoryConfigException If the given path does not point to a folder or if an error occurs
-     *                                   while accessing the folder.
+     * @param folder the path to the folder containing configuration files. Must not be {@code null}.
+     * @return a set of successfully loaded {@link InventoryConfig} instances. If no valid configuration files
+     *         are found, the set will be empty
+     * @throws IllegalArgumentException if the {@code folder} parameter is {@code null}
+     * @throws InventoryConfigException if the given path does not point to a folder or if an error occurs
+     *                                   while accessing the folder
      */
     Set<InventoryConfig> loadConfigs(Path folder) throws InventoryConfigException;
 }
